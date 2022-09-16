@@ -484,7 +484,7 @@ public enum FixMethod implements FixFunction { // checkstyle-disable-line ClassD
     lookup {
         @Override
         public void apply(final Metafix metafix, final Record record, final List<String> params, final Map<String, String> options) {
-            final Map<String, String> map = extracted(metafix, record, params, options, KIND_OF_FILEMAP);
+            final Map<String, String> map = getMap(metafix, record, params, options, KIND_OF_FILEMAP);
             record.transform(params.get(0), oldValue -> {
                 final String newValue = map.getOrDefault(oldValue, defaultValue);
                 return newValue != null ? newValue : getBoolean(options, "delete") ? null : oldValue;
@@ -494,7 +494,7 @@ public enum FixMethod implements FixFunction { // checkstyle-disable-line ClassD
     lookup_rdf {
         @Override
         public void apply(final Metafix metafix, final Record record, final List<String> params, final Map<String, String> options) {
-            final Map<String, String> map = extracted(metafix, record, params, options, KIND_OF_RDFMAP);
+            final Map<String, String> map = getMap(metafix, record, params, options, KIND_OF_RDFMAP);
             record.transform(params.get(0), oldValue -> {
                 final String newValue = map.get(oldValue);
                 return newValue != null ? newValue : getBoolean(options, "delete") ? null : oldValue;
@@ -635,7 +635,7 @@ public enum FixMethod implements FixFunction { // checkstyle-disable-line ClassD
     private static final Random RANDOM = new Random();
     private static String defaultValue;
 
-    private static Map<String, String> extracted(final Metafix metafix, final Record record, final List<String> params, final Map<String, String> options, final String kindOfMap) {
+    private static Map<String, String> getMap(final Metafix metafix, final Record record, final List<String> params, final Map<String, String> options, final String kindOfMap) {
         final Map<String, String> map;
         if (params.size() <= 1) {
             map = options;
