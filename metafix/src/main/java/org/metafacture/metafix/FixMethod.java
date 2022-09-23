@@ -630,5 +630,4 @@ public enum FixMethod implements FixFunction { // checkstyle-disable-line ClassD
 
     private static final Random RANDOM = new Random();
 
-
 }

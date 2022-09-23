@@ -190,17 +190,6 @@ The separator (`sep_char`) will vary depending on the source file, e.g.:
 | CSV  | `,` or `;` |
 | TSV  | `\t`       |
 
-##### `put_rdfmap`
-
-Defines an external RDF map for lookup from a file or an HTTP(S) resource.
-As the RDF map is reducing RDF triples to a key/value map it is mandatory to set the target.
-The targeted RDF property can optional be bound by an RDF language tag.
-
-```perl
-put_rdfmap("<rdfResource>", "<rdfMapName>", target: "<rdfProperty>")
-put_rdfmap("<rdfResource>", "<rdfMapName>", target: "<rdfProperty>, target_language: "<rdfLanguageTag>"")
-```
-
 ##### `put_map`
 
 Defines an internal map for lookup from key/value pairs.
@@ -211,6 +200,17 @@ put_map("<mapName>",
   "parrot": "bird",
   "shark": "fish"
 )
+```
+
+##### `put_rdfmap`
+
+Defines an external RDF map for lookup from a file or an HTTP(S) resource.
+As the RDF map is reducing RDF triples to a key/value map it is mandatory to set the target.
+The targeted RDF property can optionally be bound by an RDF language tag.
+
+```perl
+put_rdfmap("<rdfResource>", "<rdfMapName>", target: "<rdfProperty>")
+put_rdfmap("<rdfResource>", "<rdfMapName>", target: "<rdfProperty>, target_language: "<rdfLanguageTag>")
 ```
 
 ##### `put_var`
@@ -563,7 +563,7 @@ lookup("<sourceField>", "<mapName>", default: "NA")
 ##### `lookup_rdf`
 
 Looks up matching values in an RDF resource and replaces the field value with a match defined by a targeted RDF property. External files or HTTP(S) resources as well as internal RDF maps can be used.
-The targeted RDF property can optional be bound by an RDF language tag.
+The targeted RDF property can optionalyl be bound by an RDF language tag.
 
 ```perl
 lookup_rdf("<sourceField>", "<rdfFile>", target: "<rdfProperty>")
